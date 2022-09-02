@@ -14,18 +14,17 @@
 
 
 
-from utils.training_utils import load_pretrained_bert_model, get_device, train_step, evaluate
-from utils.tag_mapping import get_tag2idx_idx2tag_dics
-from utils.inference_utils import return_sen_to_real_form
-from models.Joint_BERT_BiLSTM import JointBERTBiLSTMTagger
-from data_loader.loader import Kasreh_DataLoader
-from handlers.checkpoint_handler import load_checkpoint
-from configs import Config
+from Joint_kasreh_comma.utils.training_utils import load_pretrained_bert_model, get_device, train_step, evaluate
+from Joint_kasreh_comma.utils.tag_mapping import get_tag2idx_idx2tag_dics
+from Joint_kasreh_comma.utils.inference_utils import return_sen_to_real_form
+from Joint_kasreh_comma.models.Joint_BERT_BiLSTM import JointBERTBiLSTMTagger
+from Joint_kasreh_comma.data_loader.loader import Kasreh_DataLoader
+from Joint_kasreh_comma.handlers.checkpoint_handler import load_checkpoint
+from Joint_kasreh_comma.configs import Config
 import torch
 import torch.optim as optim
 import torch.nn as nn
 import time
-from tqdm import tqdm
 
 
 class JointKasreCommaRecognizer:
