@@ -37,8 +37,8 @@ def inference(dataLoader,
     start = time.time()
     for input in tqdm(dataLoader):
         out = model(input)
-        comma_tags = torch.argmax(out[1], -1).detach().cpu().numpy()
         kasreh_tags = torch.argmax(out[0], -1).detach().cpu().numpy()
+        comma_tags = torch.argmax(out[1], -1).detach().cpu().numpy()
 
         for i in range(len(kasreh_tags)):
             input_ids = list(input['input_ids'][i].detach().cpu().numpy())
@@ -135,7 +135,8 @@ def main():
     if args.input_sen != '':
         print(f'Finding Kasreh for {args.input_sen} ...')
         dataLoader = Kasreh_DataLoader(all_sens = [args.input_sen.split(' ')], 
-                                    all_tags = None,
+                                    all_kasreh_tags = None,
+                                    all_comma_tags = None,
                                     tokenizer = tokenizer, 
                                     tag2idx = None,
                                     mapping_dic = None, 
