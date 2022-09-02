@@ -117,8 +117,10 @@ class Kasreh_DataLoader(Dataset):
         Returns:
             encoded_sens (`dict`): 
                 A dictionary of BERT model inputs. Each item is a pytorch tensor.
-            encoded_labels (`torch.Tensor`): 
-                A pytorch tensor obtained based on output tags.
+            encoded_kasreh_labels (`torch.Tensor`): 
+                A pytorch tensor obtained based on output kasreh tags.
+            encoded_comma_labels (`torch.Tensor`): 
+                A pytorch tensor obtained based on output comma tags.
         """
 
         # Specifying start and end index of a batch
