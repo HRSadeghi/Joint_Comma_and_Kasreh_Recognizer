@@ -46,12 +46,13 @@ class JointKasreCommaRecognizer:
         self.get_duration = get_duration
 
 
-    def inference(dataLoader,
-                model,
-                tokenizer,
-                idx2tag,
-                output_path = None
-                ):
+    def inference(self, 
+                  dataLoader,
+                  model,
+                  tokenizer,
+                  idx2tag,
+                  output_path = None
+                  ):
         comma_dict = {1:'C', 0:'N'}
         start = time.time()
         for index, input in enumerate(dataLoader):
