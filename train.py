@@ -16,7 +16,7 @@
 from utils.data_preprocessing import prepare_dataset_for_train
 from utils.training_utils import load_pretrained_bert_model, get_device, train_step, evaluate
 from utils.tag_mapping import get_tag2idx_idx2tag_dics, mapping_dic
-from models.BERT_BiLSTM import BERTBiLSTMTagger
+from models.Joint_BERT_BiLSTM import JointBERTBiLSTMTagger
 from data_loader.loader import Kasreh_DataLoader
 from handlers.checkpoint_handler import save_checkpoint, load_checkpoint
 from torchmetrics import MeanMetric
@@ -204,7 +204,7 @@ def main():
                             batch_size = args.batch_size)
 
     print('Creating BERT BiLSTM model ...')   
-    model = BERTBiLSTMTagger(bert_model = bert_model, no_of_bert_layer = args.no_of_bert_layer)
+    model = JointBERTBiLSTMTagger(bert_model = bert_model, no_of_bert_layer = args.no_of_bert_layer)
     model = model.to(device)
 
     

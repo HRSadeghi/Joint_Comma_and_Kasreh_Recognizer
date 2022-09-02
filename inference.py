@@ -15,7 +15,7 @@
 
 from utils.training_utils import load_pretrained_bert_model, get_device, train_step, evaluate
 from utils.tag_mapping import get_tag2idx_idx2tag_dics
-from models.BERT_BiLSTM import BERTBiLSTMTagger
+from models.Joint_BERT_BiLSTM import JointBERTBiLSTMTagger
 from data_loader.loader import Kasreh_DataLoader
 from handlers.checkpoint_handler import load_checkpoint
 import torch
@@ -119,7 +119,7 @@ def main():
 
 
     print('Loading model weights ...')   
-    model = BERTBiLSTMTagger(bert_model = bert_model, no_of_bert_layer = args.no_of_bert_layer)
+    model = JointBERTBiLSTMTagger(bert_model = bert_model, no_of_bert_layer = args.no_of_bert_layer)
     model = model.to(device)
 
     to_load={

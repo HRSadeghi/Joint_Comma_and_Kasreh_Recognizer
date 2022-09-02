@@ -15,7 +15,7 @@
 import torch.nn as nn
 from torch.nn.utils.rnn import pack_padded_sequence, pad_packed_sequence
 
-class BERTBiLSTMTagger(nn.Module):
+class JointBERTBiLSTMTagger(nn.Module):
     r"""
     This is a class to define the Kasreh Ezafeh model. This model is created using BERT model and BiLSTM model.
     Args:
@@ -47,7 +47,7 @@ class BERTBiLSTMTagger(nn.Module):
                  num_classes = 3 
                 ):
                  
-        super(BERTBiLSTMTagger, self).__init__()
+        super(JointBERTBiLSTMTagger, self).__init__()
         
         self.no_of_bert_layer = no_of_bert_layer
         self.lstm1 = nn.LSTM(bert_out_dim, lstm_dim, bidirectional=True, num_layers=1)
