@@ -24,13 +24,19 @@ class Kasreh_DataLoader(Dataset):
             A list of all sentences. Each sentence is in the form of a list of words.
             e.g. 
             ```python
-            >>>all_sens = [['ضحاک', 'بن', 'قیس', 'مردم', 'عراق', 'را', 'مذمت', 'کرد']]
+            >>>all_sens = [['به', 'هر', 'حال', 'من', 'پسر', 'برادر', 'شما', 'هستم']]
             ```
-        all_tags (`list`):
-            A list of all tags. Each tag itself is a list that shows the tag of each corresponding word.
+        all_kasreh_tags (`list`):
+            A list of all kasreh tags. Each tag itself is a list that shows the tag of each corresponding word.
             e.g. 
             ```python
-            >>>all_tags = [['O', 'O', 'O', 'e', 'O', 'O', 'O', 'O']]
+            >>>all_kasreh_tags = [['O', 'O', 'O', 'O', 'O', 'e', 'e', 'O']]
+            ```
+        all_comma_tags (`list`):
+            A list of all comma tags. Each tag itself is a list that shows the tag of each corresponding word.
+            e.g. 
+            ```python
+            >>>all_comma_tags = [['N', 'N', 'C', 'N', 'N', 'N', 'N', 'N']]
             ```
         tokenizer (`transformers.models.bert.tokenization_bert_fast.BertTokenizerFast`):
             The tokenizer of pretrained BERT model.
