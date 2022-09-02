@@ -15,8 +15,8 @@
 
 import logging
 import re
-from utils.tag_mapping import mapping_dic, get_tag2idx_idx2tag_dics
-from utils.delimiters import delimiters
+from Joint_kasreh_comma.utils.tag_mapping import mapping_dic, get_tag2idx_idx2tag_dics
+from Joint_kasreh_comma.utils.delimiters import delimiters
 
 def read_Bijankhan_dataset(path):
     r"""
