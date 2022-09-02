@@ -33,20 +33,25 @@ def inference(dataLoader,
               idx2tag,
               output_path = None
               ):
+    comma_dict = {1:'C', 0:'N'}
     start = time.time()
     for input in tqdm(dataLoader):
-        __o = model(input)
+        out = model(input)
+        comma_tags = torch.argmax(out[1], -1).detach().cpu().numpy()
+        kasreh_tags = torch.argmax(out[0], -1).detach().cpu().numpy()
 
-        for i in range(len(__o)):
+        for i in range(len(kasreh_tags)):
             input_ids = list(input['input_ids'][i].detach().cpu().numpy())
             input_tokens = tokenizer.convert_ids_to_tokens(input_ids)
-            out_ids = torch.argmax(__o[i], -1).detach().cpu().numpy()
-            out_labels = [idx2tag[x] for x in out_ids]
+            _kasreh_tags = kasreh_tags[i]
+            _kasreh_tags_with_name = [idx2tag[x] for x in _kasreh_tags]
+            _comma_tags = comma_tags[i]
+            _comma_tags_with_name = [comma_dict[x] for x in _comma_tags]
 
             output = ''
-            for x,y in zip(input_tokens, out_labels):
+            for x,y,z in zip(input_tokens, _kasreh_tags_with_name, _comma_tags_with_name):
                 if x not in set(tokenizer.special_tokens_map.values()):
-                    output += x + '\t' + y + '\n'
+                    output += x + '\t' + y + '\t' + z + '\n'
             
             output += '#######\n'
 
@@ -153,7 +158,8 @@ def main():
         with open(args.input_text_file) as f:
             all_sens = f.readlines()
         dataLoader = Kasreh_DataLoader(all_sens = [sen.split(' ') for sen in all_sens], 
-                                       all_tags = None,
+                                       all_kasreh_tags = None,
+                                       all_comma_tags = None,
                                        tokenizer = tokenizer, 
                                        tag2idx = None,
                                        mapping_dic = None, 
@@ -168,7 +174,7 @@ def main():
                              )
         print(f'Duration_time: {duration:4f}')
 
-        print(f'Kasreh for {args.input_text_file} was saved in {args.output_text_file}.')
+        print(f'Kasreh_and_Comma for {args.input_text_file} was saved in {args.output_text_file}.')
 
 
 
