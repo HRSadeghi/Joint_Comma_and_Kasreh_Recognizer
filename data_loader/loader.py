@@ -306,7 +306,7 @@ class Kasreh_DataLoader(Dataset):
     
     def _align_tokens_and_comma_labels(self, encoded_sens, comma_labels):
         r"""
-        A function to align comma_tags with subwords after the tokenizer is applied to sentences.
+        A function to align comma tags with subwords after the tokenizer is applied to sentences.
 
         Args:
             encoded_sens (`dict`):
