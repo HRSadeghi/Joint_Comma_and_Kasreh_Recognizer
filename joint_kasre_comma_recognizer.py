@@ -88,7 +88,8 @@ class JointKasreCommaRecognizer:
 
     def __call__(self, sent):
         dataLoader = Kasreh_DataLoader(all_sens = [sent.split(' ')], 
-                                       all_tags = None,
+                                       all_kasreh_tags = None,
+                                       all_comma_tags = None,
                                        tokenizer = self.tokenizer, 
                                        tag2idx = None,
                                        mapping_dic = None, 
