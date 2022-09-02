@@ -182,7 +182,7 @@ class Kasreh_DataLoader(Dataset):
 
     def _encode_kasreh_labels(self, out_labels):
         r"""
-        Converting the tags of each sentence to indices.
+        Converting the kasreh tags of each sentence to indices.
 
         Args:
             out_labels (`list`):
@@ -205,6 +205,18 @@ class Kasreh_DataLoader(Dataset):
 
 
     def _encode_comma_labels(self, out_labels):
+        r"""
+        Converting the comma tags of each sentence to indices.
+
+        Args:
+            out_labels (`list`):
+                A list of lists of strings.
+
+        Returns:
+            _encoded_labels (`torch.Tensor`): 
+                A pytorch tensor containing the indices of the tags.
+   
+        """
         _encoded_labels = []
         for x in out_labels:
             _curr = []
@@ -218,7 +230,7 @@ class Kasreh_DataLoader(Dataset):
 
     def _align_tokens_and_kasreh_labels(self, encoded_sens, labels):
         r"""
-        A function to align tags with subwords after the tokenizer is applied to sentences.
+        A function to align kasreh tags with subwords after the tokenizer is applied to sentences.
 
         Args:
             encoded_sens (`dict`):
