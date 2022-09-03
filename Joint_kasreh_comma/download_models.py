@@ -48,8 +48,8 @@ def downloader():
         {"url" : "https://drive.google.com/file/d/1-RzQtWWGdix7h9y_jLk5xmVItTx6p6nj/view?usp=sharing",
         "output" : join(bert_ckpt_dir, "config.json")},
 
-        {"url" : "https://drive.google.com/file/d/1-fNXVGaoTYVXXTUzb5GjDEH_jBt20H8H/view?usp=sharing",
-        "output" : join(our_model_ckpt_dir, "best_global_time_1_val_accuracy=0.987.pt")}
+        {"url" : "https://drive.google.com/file/d/1-GjmgN8VkjfsYsy7EFhwwDUJ6k1YHR_U/view?usp=sharing",
+        "output" : join(our_model_ckpt_dir, "best_global_time_1_val_accuracy=0.9809.pt")}
     ]
 
     for obj in files:
