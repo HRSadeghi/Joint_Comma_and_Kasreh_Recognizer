@@ -18,7 +18,7 @@ from pathlib import Path
 
 class Config:
     def __init__(self, checkpoint_dir=None):
-        self.base_ckpt_dir = join(str(Path.home()), 'kasre_resources')
+        self.base_ckpt_dir = join(str(Path.home()), 'joint_kasre_comma_resources')
 
         # model configs
         self.Pretrained_BERT_model_name = join(self.base_ckpt_dir, 'HooshvareLab/bert-fa-zwnj-base')

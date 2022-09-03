@@ -17,7 +17,7 @@ import os
 from os.path import join
 from pathlib import Path
 
-base_ckpt_dir = join(str(Path.home()), 'kasre_resources')
+base_ckpt_dir = join(str(Path.home()), 'joint_kasre_comma_resources')
 
 
 bert_ckpt_dir = join(base_ckpt_dir, 'HooshvareLab/bert-fa-zwnj-base')
