@@ -1,7 +1,7 @@
 # Joint_Comma_and_Kasreh_Recognizer
 This package includes source code for recognizing and adding Persian Kasre and Persian Comma to text.
 ## Installation    
-First, Clone the project
+First, clone the project
 
 ```
 git clone --single-branch --branch develop https://github.com/HRSadeghi/Joint_Comma_and_Kasreh_Recognizer.git
