@@ -5,6 +5,8 @@ First, Clone the project
 
 ```
 git clone --single-branch --branch develop https://github.com/HRSadeghi/Joint_Comma_and_Kasreh_Recognizer.git
+
+cd Joint_Comma_and_Kasreh_Recognizer
 ```
 <br>
 And then, install the project
