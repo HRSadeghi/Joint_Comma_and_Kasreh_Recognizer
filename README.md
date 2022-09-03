@@ -4,7 +4,7 @@ This package includes source code for recognizing and adding Persian Kasre and P
 First, Clone the project
 
 ```
-git clone --single-branch --branch develop https://<token>@github.com/HRSadeghi/Joint_Comma_and_Kasreh_Recognizer.git
+git clone --single-branch --branch develop https://github.com/HRSadeghi/Joint_Comma_and_Kasreh_Recognizer.git
 ```
 <br>
 And then, install the project
