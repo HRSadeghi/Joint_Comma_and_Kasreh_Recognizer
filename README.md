@@ -1,5 +1,5 @@
 # Joint_Comma_and_Kasreh_Recognizer
-This package includes source code for recognizing and adding Persian Kasre and Persian Comma to Persian text.
+This package includes source code for recognizing and adding Persian Kasre and Persian Comma to text.
 ## Installation    
 First, Clone the project
 
