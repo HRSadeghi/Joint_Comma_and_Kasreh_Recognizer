@@ -1,13 +1,13 @@
 # Joint_Comma_and_Kasreh_Recognizer
 This package includes source code for recognizing and adding Persian Kasre and Persian Comma to Persian text.
 ## Installation    
-First, Clone the project,
+First, Clone the project
 
 ```
 git clone --single-branch --branch develop https://<token>@github.com/HRSadeghi/Joint_Comma_and_Kasreh_Recognizer.git
 ```
 <br>
-And then, install the project,
+And then, install the project
 
 ```
 pip install .
@@ -16,14 +16,15 @@ pip install .
 
 ## Usage
 
-First, download the pretrained models,
+First, download the pretrained model
+
 ```python
 from Joint_kasreh_comma.download_models import *
 downloader()
 ```
 
 <br>
-And then, use it like this,
+And then, use it like this
 
 ```python
 from Joint_kasreh_comma.joint_kasre_comma_recognizer import JointKasreCommaRecognizer
