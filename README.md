@@ -7,7 +7,7 @@ First, Clone the project
 git clone --single-branch --branch develop https://<token>@github.com/HRSadeghi/Joint_Comma_and_Kasreh_Recognizer.git
 ```
 <br>
-And then, install the project
+And then, install the dependencies
 
 ```
 pip install -r requirements.txt
