@@ -22,7 +22,7 @@ class Config:
 
         # model configs
         self.Pretrained_BERT_model_name = join(self.base_ckpt_dir, 'HooshvareLab/bert-fa-zwnj-base')
-        self.no_of_bert_layer = 7
+        self.no_of_bert_layer = 10
 
 
         # dataset configs
