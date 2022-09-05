@@ -50,7 +50,7 @@ def loss_function(input,
 
   # Dedicating weights to classes
   if weights_for_labels is not None:
-    weights_for_labels = torch.Tensor(weights_for_labels)
+    weights_for_labels = torch.Tensor(weights_for_labels).to(mask.device.type)
     real_one_hot = torch.nn.functional.one_hot(real, len(weights_for_labels))
 
     weights_for_tokens = torch.sum(weights_for_labels * real_one_hot, -1)
