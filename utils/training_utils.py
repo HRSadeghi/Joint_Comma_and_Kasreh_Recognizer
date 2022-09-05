@@ -94,7 +94,7 @@ def train_step(model,
                          comma_tags,
                          comma_tag_scores,
                          loss_object = loss_object,
-                         weights_for_labels = [0.1, 0.85])
+                         weights_for_labels = [0.1, 0.9])
 
 
     total_loss = kasreh_loss + comma_loss
