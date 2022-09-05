@@ -39,12 +39,24 @@ def accuracy_function(input, real_tar, pred):
 def loss_function(input, 
                   real, 
                   pred, 
-                  loss_object):
+                  loss_object,
+                  weights_for_labels = None
+                  ):
   mask = torch.logical_not(torch.eq(input['attention_mask'], 0))
   loss_ = loss_object(pred, real)
 
   mask = mask.type(loss_.type())
   loss_ *= mask
+
+  # Dedicating weights to classes
+  if weights_for_labels is not None:
+    weights_for_labels = torch.Tensor(weights_for_labels)
+    real_one_hot = torch.nn.functional.one_hot(real, len(weights_for_labels))
+
+    weights_for_tokens = torch.sum(weights_for_labels * real_one_hot, -1)
+
+    return torch.sum(loss_*weights_for_tokens)/torch.sum(mask*weights_for_tokens)
+  ##
 
   return torch.sum(loss_)/torch.sum(mask)
 
