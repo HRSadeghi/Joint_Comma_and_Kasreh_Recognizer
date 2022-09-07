@@ -19,7 +19,7 @@ def return_sen_to_real_form(tokenizer, input_sen, kasreh_tags, comma_tags):
     if input_sen == '' or input_sen == ' ':
         return input_sen
 
-
+    punctuations = '''!(-[{;:،'"\,<./?@#$٫+=×%^&*_~…٬»؛؟ـ'''
     out = ""
     encoded = tokenizer(input_sen)
     word_ids_tags = [(x, kasreh_tags[i], comma_tags[i]) for i,x in enumerate(encoded.word_ids(batch_index=0)) if x is not None]
@@ -34,6 +34,10 @@ def return_sen_to_real_form(tokenizer, input_sen, kasreh_tags, comma_tags):
         word_i_span = encoded.word_to_chars(0,i)
 
         out += input_sen[word_i_span.start:word_i_span.end]
+        
+        if out[-1] in punctuations:
+            out += ' '
+            continue
 
         if _kasreh_tags[index_in_tag_seq] == 'e':
             out += 'ِ '
