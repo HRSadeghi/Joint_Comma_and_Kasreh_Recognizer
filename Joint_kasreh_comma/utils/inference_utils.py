@@ -56,7 +56,8 @@ def return_sen_to_real_form(tokenizer, input_sen, kasreh_tags, comma_tags):
                 out += ' '
 
         
-
+    out = out.replace('، ،', '،').replace('،،', '،')
+    out = ' '.join(out.split())
     return out.replace('، ،', '،').replace('،،', '،')
 
 
