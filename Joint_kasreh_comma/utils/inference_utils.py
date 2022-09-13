@@ -72,7 +72,7 @@ def return_sen_to_real_form(tokenizer, input_sen, kasreh_tags, comma_tags, pos_o
 def detect_and_remove_kasreh_comma(sen, tokenizer):
     encoded = tokenizer([sen])
     new_sen = ''
-    for i in encoded.word_ids()[1:-1]:
+    for i in sorted(list(set(encoded.word_ids()[1:-1]))):
         word_i_span = encoded.word_to_chars(i)
         new_sen += sen[word_i_span.start:word_i_span.end] + ' '
     _l = new_sen.strip().split()
