@@ -16,7 +16,7 @@
 
 
 
-def return_sen_to_real_form(tokenizer, input_sen, kasreh_tags, comma_tags):
+def return_sen_to_real_form(tokenizer, input_sen, kasreh_tags, comma_tags, pos_of_kasreh_comma):
     if input_sen == '' or input_sen == ' ':
         return input_sen
 
@@ -35,6 +35,12 @@ def return_sen_to_real_form(tokenizer, input_sen, kasreh_tags, comma_tags):
         word_i_span = encoded.word_to_chars(0,i)
 
         out += input_sen[word_i_span.start:word_i_span.end]
+        
+        if i in pos_of_kasreh_comma.keys():
+            if 'ِ' in pos_of_kasreh_comma[i]:
+                out += 'ِ'
+            if '،' in pos_of_kasreh_comma[i]:
+                out += '،'
         
         if out[-1] in punctuations:
             out += ' '
@@ -61,3 +67,39 @@ def return_sen_to_real_form(tokenizer, input_sen, kasreh_tags, comma_tags):
     return out
 
 
+
+
+def detect_and_remove_kasreh_comma(sen, tokenizer):
+    encoded = tokenizer([sen])
+    new_sen = ''
+    for i in encoded.word_ids()[1:-1]:
+        word_i_span = encoded.word_to_chars(i)
+        new_sen += sen[word_i_span.start:word_i_span.end] + ' '
+    _l = new_sen.strip().split()
+    pos = {}
+    index = 0
+    for x in _l:
+        if '،' in x:
+            if index - 1 in pos.keys():
+                pos[index - 1].add('،')
+            else:
+                pos[index - 1] = {'،'}
+        elif 'ِ' in x and x != 'ِ':
+            if index in pos.keys():
+                pos[index].add('ِ')
+            else:
+                pos[index] = {'ِ'}
+            index += 1
+        elif x == 'ِ':
+            if index - 1 in pos.keys():
+                pos[index - 1].add('ِ')
+            else:
+                pos[index - 1] = {'ِ'}
+        else:
+            index += 1
+
+    new_sen2 = new_sen.replace('،', ' ').replace('ِ', '')
+    new_sen2 = ' '.join(new_sen2.split())
+
+    return pos, new_sen2
+    

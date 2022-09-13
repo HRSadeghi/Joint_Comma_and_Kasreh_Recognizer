@@ -16,7 +16,7 @@
 
 from Joint_kasreh_comma.utils.training_utils import load_pretrained_bert_model, get_device, train_step, evaluate
 from Joint_kasreh_comma.utils.tag_mapping import get_tag2idx_idx2tag_dics
-from Joint_kasreh_comma.utils.inference_utils import return_sen_to_real_form
+from Joint_kasreh_comma.utils.inference_utils import return_sen_to_real_form, detect_and_remove_kasreh_comma
 from Joint_kasreh_comma.models.Joint_BERT_BiLSTM import JointBERTBiLSTMTagger
 from Joint_kasreh_comma.data_loader.loader import Kasreh_DataLoader
 from Joint_kasreh_comma.handlers.checkpoint_handler import load_checkpoint
@@ -50,6 +50,7 @@ class JointKasreCommaRecognizer:
                   model,
                   tokenizer,
                   idx2tag,
+                  pos_of_kasreh_comma = [],
                   output_path = None
                   ):
         comma_dict = {1:'C', 0:'N'}
@@ -69,7 +70,7 @@ class JointKasreCommaRecognizer:
                 _comma_tags = comma_tags[i]
                 _comma_tags_with_name = [comma_dict[x] for x in _comma_tags]
 
-                output = return_sen_to_real_form(tokenizer, input_sen, _kasreh_tags_with_name, _comma_tags_with_name)
+                output = return_sen_to_real_form(tokenizer, input_sen, _kasreh_tags_with_name, _comma_tags_with_name, pos_of_kasreh_comma)
                 output += '\n' 
 
                 if output_path is not None:
@@ -84,10 +85,12 @@ class JointKasreCommaRecognizer:
         else:
             return duration
 
-
+    
 
     def __call__(self, sent):
-        dataLoader = Kasreh_DataLoader(all_sens = [sent.split(' ')], 
+        pos_of_kasreh_comma, new_sent = detect_and_remove_kasreh_comma(sent, self.tokenizer)
+
+        dataLoader = Kasreh_DataLoader(all_sens = [new_sent.split(' ')], 
                                        all_kasreh_tags = None,
                                        all_comma_tags = None,
                                        tokenizer = self.tokenizer, 
@@ -96,10 +99,12 @@ class JointKasreCommaRecognizer:
                                        device=self.device,
                                        batch_size = 1)
 
+
         output, duration = self.inference(dataLoader,
                                           self.model,
                                           self.tokenizer,
-                                          self.idx2tag
+                                          self.idx2tag,
+                                          pos_of_kasreh_comma
                                         )
 
         if self.get_duration:
