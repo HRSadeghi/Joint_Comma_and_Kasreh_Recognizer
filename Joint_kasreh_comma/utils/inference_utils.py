@@ -50,11 +50,11 @@ def return_sen_to_real_form(tokenizer, input_sen, kasreh_tags, comma_tags, pos_o
             out += 'ِ '
         elif _kasreh_tags[index_in_tag_seq] == 'ye':
             if (out[-1] not in ['ه', 'ا','ی']):
-                out += 'یِ '
+                out += 'ِ '
             elif out[-1] == 'ی':
                 out += 'ِ '
             else:
-                out += ' '
+                out += 'ی '
         else:
             if _comma_tags[index_in_tag_seq] == 'C':
                 out += '، '
